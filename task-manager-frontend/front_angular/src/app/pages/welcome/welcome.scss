@@ -1,0 +1,57 @@
+.task-list {
+    margin-top: 20px;
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .task-item {
+        display: flex;
+        align-items: center;
+        padding: 8px 0;
+        cursor: pointer;
+
+        .icon-circle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #1890ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            transition: background-color 0.2s;
+
+            &.checked {
+                background-color: #1890ff;
+                color: white;
+            }
+
+            i {
+                font-size: 16px;
+            }
+        }
+
+        span.completed {
+            text-decoration: line-through;
+            color: #999;
+            font-style: italic;
+        }
+    }
+}
+
+.done-message {
+    text-align: center;
+    margin-top: 40px;
+
+    p {
+        margin: 16px 0;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    button {
+        margin-top: 8px;
+    }
+}
