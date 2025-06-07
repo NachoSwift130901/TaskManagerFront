@@ -22,20 +22,20 @@
 
     <ng-template #noTasks>
       <div class="no-tasks-wrapper">
-    <div nz-flex [nzJustify]="'center'" [nzAlign]="'center'">
-      <nz-empty nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
-        [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
-        <ng-template #contentTpl>
-          <span>
-            There are no tasks for this project yet.
-          </span>
-        </ng-template>
-        <ng-template #footerTpl>
-          <button nz-button nzType="primary">Create Now</button>
-        </ng-template>
-      </nz-empty>
-    </div>
-  </div>
+        <div nz-flex [nzJustify]="'center'" [nzAlign]="'center'">
+          <nz-empty nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+            [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
+            <ng-template #contentTpl>
+              <span>
+                There are no tasks for this project yet.
+              </span>
+            </ng-template>
+            <ng-template #footerTpl>
+              <button nz-button nzType="primary">Create Now</button>
+            </ng-template>
+          </nz-empty>
+        </div>
+      </div>
     </ng-template>
 
 
@@ -67,3 +67,20 @@
     </div>
   </div>
 </ng-template>
+
+<div class="button-menu">
+  <nz-float-button-group [nzIcon]="icon" nzType="primary" nzTrigger="hover" style="right: 45px">
+    <nz-float-button nz-tooltip="Add project" nzTooltipPlacement="left" [nzIcon]="inner2"></nz-float-button>
+    <nz-float-button nz-tooltip="Add task" nzTooltipPlacement="left" [nzIcon]="inner"></nz-float-button>
+  </nz-float-button-group>
+
+  <ng-template #icon>
+    <nz-icon nzType="plus" nzTheme="outline" />
+  </ng-template>
+  <ng-template #inner>
+    <nz-icon nzType="group" nzTheme="outline" />
+  </ng-template>
+  <ng-template #inner2>
+    <nz-icon nzType="project" nzTheme="outline" />
+  </ng-template>
+</div>

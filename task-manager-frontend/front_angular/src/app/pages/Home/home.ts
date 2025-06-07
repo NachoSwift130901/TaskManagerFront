@@ -8,11 +8,23 @@ import { Task } from '../../models/task';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzFlexModule } from 'ng-zorro-antd/flex';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzFloatButtonModule } from 'ng-zorro-antd/float-button';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+
 
 @Component({
   standalone: true,
   selector: 'app-welcome',
-  imports: [CommonModule, NzMenuModule, NzIconModule, NzEmptyModule, NzFlexModule, NzButtonModule],
+  imports: [
+    CommonModule, 
+    NzMenuModule, 
+    NzIconModule, 
+    NzEmptyModule, 
+    NzFlexModule, 
+    NzButtonModule, 
+    NzFloatButtonModule,
+    NzToolTipModule
+  ],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })

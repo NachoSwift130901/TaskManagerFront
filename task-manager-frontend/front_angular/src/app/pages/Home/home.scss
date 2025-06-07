@@ -81,3 +81,14 @@
 .project-menu {
     margin-bottom: 20px;
 }
+
+/* Styles for the floating button group and buttons */
+
+.menu {
+    height: 300px;
+    position: relative;
+}
+nz-float-button-group,
+nz-float-button {
+    position: absolute;
+}
