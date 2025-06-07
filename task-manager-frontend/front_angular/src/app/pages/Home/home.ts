@@ -5,11 +5,12 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { Project } from '../../models/project';
 import { Task } from '../../models/task';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 
 @Component({
   standalone: true,
   selector: 'app-welcome',
-  imports: [CommonModule, NzMenuModule, NzIconModule],
+  imports: [CommonModule, NzMenuModule, NzIconModule, NzEmptyModule],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
@@ -37,7 +38,6 @@ export class Home implements OnInit {
       }
     });
   }
-
   getTasks() {
     this.taskService.getTasks().subscribe({
       next: tasks => {
@@ -49,17 +49,35 @@ export class Home implements OnInit {
     });
   }
 
+  checkProjects() {
+    const hasPendingTasks = this.projects.some(project =>
+      this.tasks.some(task => task.idProject === project.id && !task.completed)
+    );
+
+    if (hasPendingTasks && !this.selectedProjectId) {
+      const firstProject = this.projects.find(p =>
+        this.tasks.some(t => t.idProject === p.id && !t.completed)
+      );
+      this.selectedProjectId = firstProject?.id || null;
+    }
+  }
+
   selectProject(id: string) {
     this.selectedProjectId = id;
   }
 
   toggleCompleted(task: Task) {
     task.completed = !task.completed;
-    // Aquí puedes llamar a un método del servicio si deseas persistir el cambio
   }
 
   get filteredTasks(): Task[] {
     return this.tasks.filter(task => task.idProject === this.selectedProjectId);
+  }
+
+  get hasPendingProjects(): boolean {
+    return this.projects.some(project =>
+      this.tasks.some(task => task.idProject === project.id && !task.completed)
+    );
   }
 
 
