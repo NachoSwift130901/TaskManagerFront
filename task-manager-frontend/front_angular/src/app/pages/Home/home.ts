@@ -6,11 +6,12 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { Project } from '../../models/project';
 import { Task } from '../../models/task';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzFlexModule } from 'ng-zorro-antd/flex';
 
 @Component({
   standalone: true,
   selector: 'app-welcome',
-  imports: [CommonModule, NzMenuModule, NzIconModule, NzEmptyModule],
+  imports: [CommonModule, NzMenuModule, NzIconModule, NzEmptyModule, NzFlexModule],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
