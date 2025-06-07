@@ -7,11 +7,12 @@ import { Project } from '../../models/project';
 import { Task } from '../../models/task';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
 import { NzFlexModule } from 'ng-zorro-antd/flex';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 @Component({
   standalone: true,
   selector: 'app-welcome',
-  imports: [CommonModule, NzMenuModule, NzIconModule, NzEmptyModule, NzFlexModule],
+  imports: [CommonModule, NzMenuModule, NzIconModule, NzEmptyModule, NzFlexModule, NzButtonModule],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
@@ -29,6 +30,7 @@ export class Home implements OnInit {
   getProjects() {
     this.taskService.getProjects().subscribe({
       next: projects => {
+        console.log('Projects fetched:', projects);
         this.projects = projects;
         if (projects.length) {
           this.selectedProjectId = projects[0].id; 
@@ -43,6 +45,7 @@ export class Home implements OnInit {
     this.taskService.getTasks().subscribe({
       next: tasks => {
         this.tasks = tasks;
+        console.log('Tasks fetched:', tasks);
       },
       error: error => {
         console.error('Error fetching tasks:', error);

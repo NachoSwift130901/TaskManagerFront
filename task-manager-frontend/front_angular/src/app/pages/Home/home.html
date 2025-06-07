@@ -1,6 +1,6 @@
 <ng-container *ngIf="hasPendingProjects; else noProjects">
   <!-- Menu -->
-  <ul nz-menu nzMode="horizontal">
+  <ul nz-menu nzMode="horizontal" class="project-menu">
     <li *ngFor="let project of projects" nz-menu-item [nzSelected]="project.id === selectedProjectId"
       (click)="selectProject(project.id)">
       {{ project.name }}
@@ -19,6 +19,10 @@
         </li>
       </ul>
     </div>
+
+    <ng-template #noTasks>
+      no tasks
+    </ng-template>
 
 
     <!-- All tasks are done -->
