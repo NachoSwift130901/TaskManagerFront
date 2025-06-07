@@ -10,10 +10,10 @@ import { Task } from '../../models/task';
   standalone: true,
   selector: 'app-welcome',
   imports: [CommonModule, NzMenuModule, NzIconModule],
-  templateUrl: './welcome.html',
-  styleUrl: './welcome.scss'
+  templateUrl: './home.html',
+  styleUrl: './home.scss'
 })
-export class Welcome implements OnInit {
+export class Home implements OnInit {
   constructor(private taskService: TaskService) {}
   ngOnInit() {
     this.getTasks();
