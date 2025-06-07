@@ -78,11 +78,9 @@ export class Home implements OnInit {
     return this.tasks.filter(task => task.idProject === this.selectedProjectId);
   }
 
-  get hasPendingProjects(): boolean {
-    return this.projects.some(project =>
-      this.tasks.some(task => task.idProject === project.id && !task.completed)
-    );
-  }
+  get hasProjects(): boolean {
+  return this.projects.length > 0;
+}
 
 
 }
