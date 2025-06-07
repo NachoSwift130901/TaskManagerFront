@@ -1,0 +1,89 @@
+<ng-container *ngIf="hasProjects; else noProjects">
+  <!-- Menu -->
+  <ul nz-menu nzMode="horizontal" class="project-menu">
+    <li *ngFor="let project of projects" nz-menu-item [nzSelected]="project.id === selectedProjectId"
+      (click)="selectProject(project.id)">
+      {{ project.name }}
+    </li>
+  </ul>
+
+  <!-- Task List -->
+  <div class="taks-list-container">
+    <div *ngIf="filteredTasks.length > 0; else noTasks" class="task-list">
+      <ul>
+        <li *ngFor="let task of filteredTasks" class="task-item" (click)="toggleCompleted(task)">
+          <span class="icon-circle" [class.checked]="task.completed">
+            <i nz-icon nzType="check" *ngIf="task.completed"></i>
+          </span>
+          <span [class.completed]="task.completed">{{ task.description }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <ng-template #noTasks>
+      <div class="no-tasks-wrapper">
+        <div nz-flex [nzJustify]="'center'" [nzAlign]="'center'">
+          <nz-empty nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+            [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
+            <ng-template #contentTpl>
+              <span>
+                There are no tasks for this project yet.
+              </span>
+            </ng-template>
+            <ng-template #footerTpl>
+              <button nz-button nzType="primary">Create Now</button>
+            </ng-template>
+          </nz-empty>
+        </div>
+      </div>
+    </ng-template>
+
+
+    <!-- All tasks are done -->
+    <ng-template #allDone>
+      <div class="done-message">
+        <i nz-icon nzType="check-circle" nzTwoToneColor="#52c41a" style="font-size: 48px;"></i>
+        <p>You have successfully completed the list!</p>
+      </div>
+    </ng-template>
+  </div>
+</ng-container>
+
+<!-- if there are no projects -->
+<ng-template #noProjects>
+  <div class="segment-wrapper">
+    <div nz-flex [nzJustify]="'center'" [nzAlign]="'center'">
+      <nz-empty nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+        [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
+        <ng-template #contentTpl>
+          <span>
+            There are no projects yet.
+          </span>
+        </ng-template>
+        <ng-template #footerTpl>
+          <button nz-button nzType="primary">Create Now</button>
+        </ng-template>
+      </nz-empty>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Floating Action Button -->
+<ng-container *ngIf="hasProjects">
+  <div class="button-menu">
+    <nz-float-button-group [nzIcon]="icon" nzType="primary" nzTrigger="hover" style="right: 45px">
+      <nz-float-button nz-tooltip="Add project" nzTooltipPlacement="left" [nzIcon]="inner2"></nz-float-button>
+      <nz-float-button nz-tooltip="Add task" nzTooltipPlacement="left" [nzIcon]="inner"></nz-float-button>
+    </nz-float-button-group>
+
+    <ng-template #icon>
+      <nz-icon nzType="plus" nzTheme="outline" />
+    </ng-template>
+    <ng-template #inner>
+      <nz-icon nzType="group" nzTheme="outline" />
+    </ng-template>
+    <ng-template #inner2>
+      <nz-icon nzType="project" nzTheme="outline" />
+    </ng-template>
+  </div>
+</ng-container>

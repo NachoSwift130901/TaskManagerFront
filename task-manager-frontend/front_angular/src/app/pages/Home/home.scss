@@ -1,5 +1,11 @@
 .task-list {
-    margin-top: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    max-width: 800px; /* Optional: constrain width */
+    margin-left: 2px;
 
     ul {
         list-style: none;
@@ -54,4 +60,35 @@
     button {
         margin-top: 8px;
     }
+}
+
+.segment-wrapper {
+    height: 100%;
+    min-height: calc(95vh - 64px - 48px); /* Viewport height - header height - content margins */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-tasks-wrapper {
+    height: 100%;
+    min-height: calc(83vh - 64px - 48px); /* Viewport height - header height - content margins */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-menu {
+    margin-bottom: 20px;
+}
+
+/* Styles for the floating button group and buttons */
+
+.menu {
+    height: 300px;
+    position: relative;
+}
+nz-float-button-group,
+nz-float-button {
+    position: absolute;
 }
