@@ -69,21 +69,21 @@
 </ng-template>
 
 <!-- Floating Action Button -->
- <ng-container *ngIf="hasProjects">
-<div class="button-menu"  >
-  <nz-float-button-group [nzIcon]="icon" nzType="primary" nzTrigger="hover" style="right: 45px">
-    <nz-float-button nz-tooltip="Add project" nzTooltipPlacement="left" [nzIcon]="inner2"></nz-float-button>
-    <nz-float-button nz-tooltip="Add task" nzTooltipPlacement="left" [nzIcon]="inner"></nz-float-button>
-  </nz-float-button-group>
+<ng-container *ngIf="hasProjects">
+  <div class="button-menu">
+    <nz-float-button-group [nzIcon]="icon" nzType="primary" nzTrigger="hover" style="right: 45px">
+      <nz-float-button nz-tooltip="Add project" nzTooltipPlacement="left" [nzIcon]="inner2"></nz-float-button>
+      <nz-float-button nz-tooltip="Add task" nzTooltipPlacement="left" [nzIcon]="inner"></nz-float-button>
+    </nz-float-button-group>
 
-  <ng-template #icon>
-    <nz-icon nzType="plus" nzTheme="outline" />
-  </ng-template>
-  <ng-template #inner>
-    <nz-icon nzType="group" nzTheme="outline" />
-  </ng-template>
-  <ng-template #inner2>
-    <nz-icon nzType="project" nzTheme="outline" />
-  </ng-template>
-</div>
+    <ng-template #icon>
+      <nz-icon nzType="plus" nzTheme="outline" />
+    </ng-template>
+    <ng-template #inner>
+      <nz-icon nzType="group" nzTheme="outline" />
+    </ng-template>
+    <ng-template #inner2>
+      <nz-icon nzType="project" nzTheme="outline" />
+    </ng-template>
+  </div>
 </ng-container>
