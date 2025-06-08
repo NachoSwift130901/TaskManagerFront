@@ -67,7 +67,6 @@ export class Home implements OnInit {
       }
     });
   }
-
   checkProjects() {
     const hasPendingTasks = this.projects.some(project =>
       this.tasks.some(task => task.idProject === project.id && !task.completed)
@@ -80,19 +79,15 @@ export class Home implements OnInit {
       this.selectedProjectId = firstProject?.id || null;
     }
   }
-
   selectProject(id: string) {
     this.selectedProjectId = id;
   }
-
   toggleCompleted(task: Task) {
     task.completed = !task.completed;
   }
-
   get filteredTasks(): Task[] {
     return this.tasks.filter(task => task.idProject === this.selectedProjectId);
   }
-
   get hasProjects(): boolean {
     return this.projects.length > 0;
   }

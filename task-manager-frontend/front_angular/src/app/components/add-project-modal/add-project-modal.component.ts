@@ -5,6 +5,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { FormsModule } from '@angular/forms';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   standalone: true,
@@ -14,11 +15,11 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './add-project-modal.component.scss'
 })
 export class AddProjectModalComponent {
-  projectName: ProjectPayload = {
-    name: ''
-  }
 
-  constructor(private taskService: TaskService) { }
+
+  constructor(private taskService: TaskService, private message: NzMessageService) { }
+
+  projectName : ProjectPayload= { name: '' };
 
   isVisible = false;
   isOkLoading = false;
@@ -42,15 +43,21 @@ export class AddProjectModalComponent {
     this.isOkLoading = true;
     this.taskService.createProject(this.projectName).subscribe({
       next: (createdProject) => {
-        console.log('Project created successfully:', createdProject);
         this.isVisible = false;
         this.isOkLoading = false;
-        this.projectName.name = ''; // Reset the project name after creation
+        this.projectName.name = '';
+        this.message.success(`Project ${createdProject.name} created successfully!`);
+      },
+      error: (error) => {
+        this.isVisible = false;
+        this.isOkLoading = false;
+        this.message.error(`Error creating project: ${error.message}`);
       }
     })
   }
   handleCancel(): void {
     this.isVisible = false;
+    this.projectName.name = '';
   }
 
 }
