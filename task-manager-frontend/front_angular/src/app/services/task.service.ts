@@ -3,7 +3,7 @@ import { environment } from "../env/environment";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Task } from "../models/task";
-import { Project } from "../models/project";
+import { Project, ProjectPayload } from "../models/project";
 
 @Injectable({
   providedIn: 'root'})
@@ -11,7 +11,8 @@ export class TaskService {
     constructor(private http: HttpClient) { }
     
     private getTasksUrl: string = `${environment.apiUrl}/tasks`
-    private getProjectsUrl: string = `${environment.apiUrl}/projects`
+    private getProjectsUrl: string = `${environment.apiUrl}/projects/getProjects`
+    private createProjectUrl: string = `${environment.apiUrl}/projects/addProject`
 
 
     public getTasks(): Observable<Task[]> {
@@ -20,6 +21,10 @@ export class TaskService {
 
     public getProjects(): Observable<Project[]> {
         return this.http.get<Project[]>(this.getProjectsUrl);
+    }
+
+    public createProject(project: ProjectPayload): Observable<Project> {
+        return this.http.post<Project>(this.createProjectUrl, project);
     }
 
     
