@@ -1,0 +1,7 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Add task" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
+    [nzOkLoading]="isOkLoading">
+    <div *nzModalContent>
+        <input  nz-input placeholder="Name" nzSize="large" [(ngModel)]="taskDescription" />
+    </div>
+</nz-modal>
+
