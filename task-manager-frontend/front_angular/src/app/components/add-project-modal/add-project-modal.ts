@@ -11,14 +11,14 @@ import { NzMessageService } from 'ng-zorro-antd/message';
   standalone: true,
   selector: 'app-add-project-modal',
   imports: [NzButtonModule, NzModalModule, NzInputModule, FormsModule],
-  templateUrl: './add-project-modal.component.html',
-  styleUrl: './add-project-modal.component.scss'
+  templateUrl: './add-project-modal.html',
+  styleUrl: './add-project-modal.scss'
 })
-export class AddProjectModalComponent {
+export class AddProjectModal {
   constructor(private taskService: TaskService, private message: NzMessageService) { }
 
   @Output() projectCreated = new EventEmitter<void>();
-  projectName : ProjectPayload= { name: '' };
+  projectPayload : ProjectPayload= { name: '' };
 
   isVisible = false;
   isOkLoading = false;
@@ -40,11 +40,11 @@ export class AddProjectModalComponent {
 
   handleOk(): void {
     this.isOkLoading = true;
-    this.taskService.createProject(this.projectName).subscribe({
+    this.taskService.createProject(this.projectPayload).subscribe({
       next: (createdProject) => {
         this.isVisible = false;
         this.isOkLoading = false;
-        this.projectName.name = '';
+        this.projectPayload.name = '';
         this.projectCreated.emit(); 
         this.message.success(`Project ${createdProject.name} created successfully!`);
       },
@@ -57,7 +57,7 @@ export class AddProjectModalComponent {
   }
   handleCancel(): void {
     this.isVisible = false;
-    this.projectName.name = '';
+    this.projectPayload.name = '';
   }
 
 }
