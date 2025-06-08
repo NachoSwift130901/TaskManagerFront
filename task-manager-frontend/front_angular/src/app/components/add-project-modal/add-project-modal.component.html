@@ -1,0 +1,9 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Add project" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()"
+    [nzOkLoading]="isOkLoading">
+    <div *nzModalContent>
+        <input  nz-input placeholder="Name" nzSize="large" [(ngModel)]="projectName.name" />
+    </div>
+
+
+</nz-modal>
+

@@ -10,26 +10,29 @@ import { NzFlexModule } from 'ng-zorro-antd/flex';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFloatButtonModule } from 'ng-zorro-antd/float-button';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { AddProjectModalComponent } from '../../components/add-project-modal/add-project-modal.component';
+
 
 
 @Component({
   standalone: true,
   selector: 'app-welcome',
   imports: [
-    CommonModule, 
-    NzMenuModule, 
-    NzIconModule, 
-    NzEmptyModule, 
-    NzFlexModule, 
-    NzButtonModule, 
+    CommonModule,
+    NzMenuModule,
+    NzIconModule,
+    NzEmptyModule,
+    NzFlexModule,
+    NzButtonModule,
     NzFloatButtonModule,
-    NzToolTipModule
+    NzToolTipModule,
+    AddProjectModalComponent
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
 export class Home implements OnInit {
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService) { }
   ngOnInit() {
     this.getTasks();
     this.getProjects();
@@ -45,7 +48,7 @@ export class Home implements OnInit {
         console.log('Projects fetched:', projects);
         this.projects = projects;
         if (projects.length) {
-          this.selectedProjectId = projects[0].id; 
+          this.selectedProjectId = projects[0].id;
         }
       },
       error: error => {
@@ -64,7 +67,6 @@ export class Home implements OnInit {
       }
     });
   }
-
   checkProjects() {
     const hasPendingTasks = this.projects.some(project =>
       this.tasks.some(task => task.idProject === project.id && !task.completed)
@@ -77,22 +79,19 @@ export class Home implements OnInit {
       this.selectedProjectId = firstProject?.id || null;
     }
   }
-
   selectProject(id: string) {
     this.selectedProjectId = id;
   }
-
   toggleCompleted(task: Task) {
     task.completed = !task.completed;
   }
-
   get filteredTasks(): Task[] {
     return this.tasks.filter(task => task.idProject === this.selectedProjectId);
   }
-
   get hasProjects(): boolean {
-  return this.projects.length > 0;
-}
+    return this.projects.length > 0;
+  }
+
 
 
 }
