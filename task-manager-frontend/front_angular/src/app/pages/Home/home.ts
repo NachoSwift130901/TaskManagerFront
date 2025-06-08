@@ -10,7 +10,8 @@ import { NzFlexModule } from 'ng-zorro-antd/flex';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFloatButtonModule } from 'ng-zorro-antd/float-button';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { AddProjectModalComponent } from '../../components/add-project-modal/add-project-modal.component';
+import { AddProjectModal } from '../../components/add-project-modal/add-project-modal';
+import { AddTaskModal } from "../../components/add-task-modal/add-task-modal";
 
 
 
@@ -26,8 +27,9 @@ import { AddProjectModalComponent } from '../../components/add-project-modal/add
     NzButtonModule,
     NzFloatButtonModule,
     NzToolTipModule,
-    AddProjectModalComponent
-  ],
+    AddProjectModal,
+    AddTaskModal
+],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
