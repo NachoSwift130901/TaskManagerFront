@@ -12,6 +12,8 @@ export class TaskService {
     
     private getTasksUrl: string = `${environment.apiUrl}/tasks/getTasks`
     private createTaskUrl: string = `${environment.apiUrl}/tasks/addTask`
+    private markTaskCompleteUrl: string = `${environment.apiUrl}/tasks/mark-done`
+    private markTaskIncompleteUrl: string = `${environment.apiUrl}/tasks/mark-not-done`
     private getProjectsUrl: string = `${environment.apiUrl}/projects/getProjects`
     private createProjectUrl: string = `${environment.apiUrl}/projects/addProject`
 
@@ -19,18 +21,19 @@ export class TaskService {
     public getTasks(): Observable<Task[]> {
         return this.http.get<Task[]>(this.getTasksUrl);
     }
-
     public createTask(task: TaskPayload): Observable<Task> {
         return this.http.post<Task>(this.createTaskUrl, task);
     }
-
+    public markTaskComplete(taskId: string): Observable<Task> {
+        return this.http.put<Task>(this.markTaskCompleteUrl, { id: taskId } );
+    }
+    public markTaskIncomplete(taskId: string): Observable<Task> {
+        return this.http.put<Task>(this.markTaskIncompleteUrl, { id: taskId });
+    }
     public getProjects(): Observable<Project[]> {
         return this.http.get<Project[]>(this.getProjectsUrl);
     }
-
     public createProject(project: ProjectPayload): Observable<Project> {
         return this.http.post<Project>(this.createProjectUrl, project);
     }
-
-    
 }

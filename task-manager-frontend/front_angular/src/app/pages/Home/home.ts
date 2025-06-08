@@ -69,6 +69,34 @@ export class Home implements OnInit {
       }
     });
   }
+  markTaskComplete(id: string) {
+    console.log('Marking task complete:', id);
+    this.taskService.markTaskComplete(id).subscribe({
+      next: updatedTask => {
+        const task = this.tasks.find(t => t.id === updatedTask.id);
+        if (task) {
+          task.completed = updatedTask.completed;
+        }
+      },
+      error: error => {
+        console.error('Error marking task complete:', error);
+      }
+    });
+  }
+  markTaskIncomplete(id: string) {
+    console.log('Marking task incomplete:', id);
+    this.taskService.markTaskIncomplete(id).subscribe({
+      next: updatedTask => {
+        const task = this.tasks.find(t => t.id === updatedTask.id);
+        if (task) {
+          task.completed = updatedTask.completed;
+        }
+      },
+      error: error => {
+        console.error('Error marking task incomplete:', error);
+      }
+    });
+  }
   checkProjects() {
     const hasPendingTasks = this.projects.some(project =>
       this.tasks.some(task => task.idProject === project.id && !task.completed)
@@ -85,7 +113,12 @@ export class Home implements OnInit {
     this.selectedProjectId = id;
   }
   toggleCompleted(task: Task) {
-    task.completed = !task.completed;
+    console.log('Toggling task completion:', task);
+    if (task.completed) {
+    this.markTaskIncomplete(task.id);
+  } else {
+    this.markTaskComplete(task.id);
+  }
   }
   get filteredTasks(): Task[] {
     return this.tasks.filter(task => task.idProject === this.selectedProjectId);
