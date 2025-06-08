@@ -13,7 +13,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
   styleUrl: './app.scss'
 })
 export class AppComponent {
-  isCollapsed = false;
+  isCollapsed = false
 
 
 
