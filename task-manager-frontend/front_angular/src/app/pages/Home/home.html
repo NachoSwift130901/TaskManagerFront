@@ -88,4 +88,4 @@
   </div>
 </ng-container>
 
-<app-add-project-modal #addProjectModal></app-add-project-modal>
+<app-add-project-modal #addProjectModal (projectCreated)="getProjects()"></app-add-project-modal>

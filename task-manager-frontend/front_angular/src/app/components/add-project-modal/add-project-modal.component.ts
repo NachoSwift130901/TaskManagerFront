@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { ProjectPayload } from '../../models/project';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -15,10 +15,9 @@ import { NzMessageService } from 'ng-zorro-antd/message';
   styleUrl: './add-project-modal.component.scss'
 })
 export class AddProjectModalComponent {
-
-
   constructor(private taskService: TaskService, private message: NzMessageService) { }
 
+  @Output() projectCreated = new EventEmitter<void>();
   projectName : ProjectPayload= { name: '' };
 
   isVisible = false;
@@ -46,6 +45,7 @@ export class AddProjectModalComponent {
         this.isVisible = false;
         this.isOkLoading = false;
         this.projectName.name = '';
+        this.projectCreated.emit(); 
         this.message.success(`Project ${createdProject.name} created successfully!`);
       },
       error: (error) => {
