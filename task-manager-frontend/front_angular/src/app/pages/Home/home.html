@@ -31,21 +31,13 @@
               </span>
             </ng-template>
             <ng-template #footerTpl>
-              <button nz-button nzType="primary">Create Now</button>
+              <button nz-button nzType="primary" (click)="addTaskModal.showModal()">Create Now</button>
             </ng-template>
           </nz-empty>
         </div>
       </div>
     </ng-template>
 
-
-    <!-- All tasks are done -->
-    <ng-template #allDone>
-      <div class="done-message">
-        <i nz-icon nzType="check-circle" nzTwoToneColor="#52c41a" style="font-size: 48px;"></i>
-        <p>You have successfully completed the list!</p>
-      </div>
-    </ng-template>
   </div>
 </ng-container>
 
@@ -61,7 +53,7 @@
           </span>
         </ng-template>
         <ng-template #footerTpl>
-          <button nz-button nzType="primary">Create Now</button>
+          <button nz-button nzType="primary" (click)="addProjectModal.showModal()">Create Now</button>
         </ng-template>
       </nz-empty>
     </div>
@@ -73,7 +65,7 @@
   <div class="button-menu">
     <nz-float-button-group [nzIcon]="icon" nzType="primary" nzTrigger="hover" style="right: 45px">
       <nz-float-button nz-tooltip="Add project" nzTooltipPlacement="left" [nzIcon]="inner" (nzOnClick)="addProjectModal.showModal()"></nz-float-button>
-      <nz-float-button nz-tooltip="Add task" nzTooltipPlacement="left" [nzIcon]="inner2" ></nz-float-button>
+      <nz-float-button nz-tooltip="Add task" nzTooltipPlacement="left" [nzIcon]="inner2" (nzOnClick)="addTaskModal.showModal()"></nz-float-button>
     </nz-float-button-group>
 
     <ng-template #icon>
@@ -89,3 +81,4 @@
 </ng-container>
 
 <app-add-project-modal #addProjectModal (projectCreated)="getProjects()"></app-add-project-modal>
+<app-add-task-modal #addTaskModal [idProject]="selectedProjectId" (taskCreated)="getTasks()"></app-add-task-modal>
