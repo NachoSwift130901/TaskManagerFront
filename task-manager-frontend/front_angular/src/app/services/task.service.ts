@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "../env/environment";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import { Task } from "../models/task";
+import { Task, TaskPayload } from "../models/task";
 import { Project, ProjectPayload } from "../models/project";
 
 @Injectable({
@@ -10,13 +10,18 @@ import { Project, ProjectPayload } from "../models/project";
 export class TaskService {
     constructor(private http: HttpClient) { }
     
-    private getTasksUrl: string = `${environment.apiUrl}/tasks`
+    private getTasksUrl: string = `${environment.apiUrl}/tasks/getTasks`
+    private createTaskUrl: string = `${environment.apiUrl}/tasks/addTask`
     private getProjectsUrl: string = `${environment.apiUrl}/projects/getProjects`
     private createProjectUrl: string = `${environment.apiUrl}/projects/addProject`
 
 
     public getTasks(): Observable<Task[]> {
         return this.http.get<Task[]>(this.getTasksUrl);
+    }
+
+    public createTask(task: TaskPayload): Observable<Task> {
+        return this.http.post<Task>(this.createTaskUrl, task);
     }
 
     public getProjects(): Observable<Project[]> {
