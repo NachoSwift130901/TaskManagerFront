@@ -11,7 +11,14 @@
             <td>{{ project.name }}</td>
             <td style="white-space: nowrap;">
                 <button nz-button nzType="primary" style="margin-right: 8px;" (click)="editProjectModal.showModal(project)">Edit</button>
-                <button nz-button nzType="primary"  nzDanger (click)="onDelete(project)">Delete</button>
+                <button nz-popconfirm nzType="primary" nz-button nzDanger
+                nzPopconfirmTitle="Are you sure delete this project?"  
+                nzPopconfirmPlacement="top" 
+                (nzOnConfirm)="confirm(project)" 
+                (nzOnCancel)="cancel()"
+                >
+                Delete
+            </button>
             </td>
         </tr>
         }

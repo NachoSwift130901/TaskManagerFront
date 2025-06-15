@@ -6,10 +6,12 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { AddTaskModal } from "../../components/add-task-modal/add-task-modal";
 import { AddProjectModal } from "../../components/add-project-modal/add-project-modal";
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-project-admin',
-  imports: [NzTableModule, NzDividerModule, NzButtonModule, AddTaskModal, AddProjectModal],
+  imports: [NzTableModule, NzDividerModule, NzButtonModule, AddTaskModal, AddProjectModal, NzPopconfirmModule],
   templateUrl: './project-admin.html',
   styleUrl: './project-admin.scss'
 })
@@ -18,7 +20,7 @@ export class ProjectAdmin implements OnInit {
   ngOnInit() {
     this.getProjects();
   }
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, private nzMessageService: NzMessageService) { }
 
   listOfData: Project[] = [];
 
@@ -59,4 +61,12 @@ export class ProjectAdmin implements OnInit {
     });
   }
 
+  // Delete project confirmation
+  cancel(): void {
+    this.nzMessageService.info('Canceled');
+  }
+
+  confirm(project: Project): void {
+    this.nzMessageService.info(`${project.name} deleted`);
+  }
 }
