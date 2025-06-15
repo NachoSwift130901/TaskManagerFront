@@ -1,0 +1,28 @@
+<nz-table #basicTable [nzData]="listOfData" class="project-table" [nzBordered]="true" [nzSize]="'middle'">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (project of basicTable.data; track project) {
+        <tr>
+            <td>{{ project.name }}</td>
+            <td style="white-space: nowrap;">
+                <button nz-button nzType="primary" style="margin-right: 8px;" (click)="editProjectModal.showModal(project)">Edit</button>
+                <button nz-popconfirm nzType="primary" nz-button nzDanger
+                nzPopconfirmTitle="Are you sure delete this project?"  
+                nzPopconfirmPlacement="top" 
+                (nzOnConfirm)="confirm(project)" 
+                (nzOnCancel)="cancel()"
+                >
+                Delete
+            </button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</nz-table>
+
+<app-add-project-modal #editProjectModal (projectCreated)="getProjects()" (projectUpdated)="getProjects()"></app-add-project-modal>

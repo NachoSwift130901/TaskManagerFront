@@ -7,7 +7,7 @@
     [nzTrigger]="null"
   >
     <div class="sidebar-logo">
-      <a href="https://ng.ant.design/" target="_blank">
+      <a routerLink="/home">
         <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
         <h1>Task Manager</h1>
       </a>
@@ -15,7 +15,7 @@
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
       <li nz-submenu nzOpen nzTitle="Add" nzIcon="form">
         <ul>
-          <li nz-menu-item nzMatchRouter>
+          <li nz-menu-item nzMatchRouter routerLink="/home/project-admin">
             <a>Project</a>
           </li>
           <li nz-menu-item nzMatchRouter>
