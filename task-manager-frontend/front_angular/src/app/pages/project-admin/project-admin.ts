@@ -16,11 +16,10 @@ import { NzMessageService } from 'ng-zorro-antd/message';
   styleUrl: './project-admin.scss'
 })
 export class ProjectAdmin implements OnInit {
-
   ngOnInit() {
     this.getProjects();
   }
-  constructor(private taskService: TaskService, private nzMessageService: NzMessageService) { }
+  constructor(private taskService: TaskService, private nzMessageService: NzMessageService, ) { }
 
   listOfData: Project[] = [];
 
@@ -67,6 +66,14 @@ export class ProjectAdmin implements OnInit {
   }
 
   confirm(project: Project): void {
-    this.nzMessageService.info(`${project.name} deleted`);
+    this.taskService.deleteProject(project.id).subscribe({
+      next: () => {
+        this.getProjects()
+        this.nzMessageService.success(`${project.name} deleted successfully`);
+      },
+      error: error => {
+        this.nzMessageService.error(`Failed to delete ${project.name}`);
+      }
+    });
   }
 }
