@@ -16,6 +16,7 @@ export class TaskService {
     private markTaskIncompleteUrl: string = `${environment.apiUrl}/tasks/mark-not-done`
     private getProjectsUrl: string = `${environment.apiUrl}/projects/getProjects`
     private createProjectUrl: string = `${environment.apiUrl}/projects/addProject`
+    private editProjectUrl: string = `${environment.apiUrl}/projects/updateProject`;
 
 
     public getTasks(): Observable<Task[]> {
@@ -35,5 +36,9 @@ export class TaskService {
     }
     public createProject(project: ProjectPayload): Observable<Project> {
         return this.http.post<Project>(this.createProjectUrl, project);
+    }
+    public editProject(project: Project): Observable<Project> {
+        console.log('Editing project:', project);
+        return this.http.put<Project>(this.editProjectUrl, project);
     }
 }
